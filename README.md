@@ -1,6 +1,6 @@
 # WhatWeb MCP Server — web technology fingerprinting for AI agents
 
-WhatWeb MCP server gives Claude Code, Cursor, and any Model Context Protocol client the ability to fingerprint websites and identify the technologies behind them: CMS platforms like WordPress and Drupal, web servers, JavaScript frameworks, analytics tools, and 1,800+ more plugins. It runs WhatWeb, the standard open-source web scanner, inside a hardened Docker container and speaks MCP over stdio, so your AI agent can turn a domain into a structured technology report in one tool call. Sales and prospecting teams use it to qualify leads; security teams use it for recon.
+WhatWeb MCP server gives Claude Code, Cursor, and any Model Context Protocol client the ability to fingerprint websites and identify the technologies behind them: CMS platforms, web servers, JavaScript frameworks, analytics tools, and 1,800+ more plugins. It runs WhatWeb, the standard open-source web scanner, inside a hardened Docker container and speaks MCP over stdio, so your AI agent can turn a domain into a structured technology report in one tool call. Sales and prospecting teams use it to qualify leads; security teams use it for recon.
 
 The server publishes three tools: `whatweb_scan` (scan a target at five aggression levels), `get_scan_results` (fetch a previous scan by ID), and `list_active_scans` (see what is running). Scans run in a sandboxed container with a non-root user, memory and CPU limits, and flag-injection validation on every target.
 
@@ -53,7 +53,7 @@ Aggression levels map to WhatWeb's `-a` flag: `stealthy`/`passive` (1, one reque
 
 ## How it works
 
-The container installs WhatWeb from the official upstream repository on an Alpine Ruby base, then runs a Python MCP server (`mcp` SDK, stdio transport). Each scan shells out with an argument array (no shell interpolation), writes WhatWeb's JSON log to an ephemeral `/app/output`, and parses it into typed results. Up to 100 scan results are kept in memory for follow-up questions in the same session. Tests cover target validation, JSON parsing, result-store bounds, and a live MCP stdio JSON-RPC handshake — run them with `pytest`.
+The container installs WhatWeb from the official upstream repository on an Alpine Ruby base, then runs a Python MCP server (`mcp` SDK, stdio transport). Each scan shells out with an argument array (no shell interpolation), writes WhatWeb's JSON log to an ephemeral `/app/output`, and parses it into typed results. Up to 100 scan results are kept in memory for follow-up questions in the same session. Tests cover target validation, JSON parsing, result-store bounds, and a live MCP stdio JSON-RPC handshake — run them with `pytest`. Also installable from source without Docker: `pip install -r requirements.txt && python3 server.py` (requires WhatWeb on your PATH).
 
 ## Roadmap
 
