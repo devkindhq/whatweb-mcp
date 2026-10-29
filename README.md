@@ -1,6 +1,6 @@
 # WhatWeb MCP Server: web technology fingerprinting for AI agents
 
-WhatWeb MCP server lets Claude Code, Cursor, and any Model Context Protocol client fingerprint websites and identify the technologies behind them: CMS platforms, web servers, JavaScript frameworks, analytics tools, and more. It runs WhatWeb inside a hardened Docker container over stdio, turning a domain into a structured technology report in one tool call.
+WhatWeb MCP server lets Claude Code, Cursor, and any MCP client fingerprint websites and identify their CMS, web server, frameworks, and analytics tools. It runs WhatWeb in a hardened Docker container and returns a structured report in one tool call.
 
 Sales and prospecting teams use it to qualify leads; security teams use it for recon.
 
