@@ -27,7 +27,7 @@ from mcp.types import (
     TextContent,
     Tool,
 )
-from pydantic import BaseModel, Field
+from pydantic import AnyUrl, BaseModel, Field
 from pydantic_settings import BaseSettings
 
 logging.basicConfig(
@@ -348,7 +348,8 @@ async def list_resources() -> list[Resource]:
 
 
 @app.read_resource()
-async def read_resource(uri: str) -> str:
+async def read_resource(uri: AnyUrl) -> str:
+    uri = str(uri)
     if uri.startswith("whatweb://results/"):
         scan_id = uri.replace("whatweb://results/", "")
         result = scan_results.get(scan_id)

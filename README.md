@@ -165,7 +165,7 @@ This repo ships a ready-made agent skill at [`skills/tech-detector/SKILL.md`](sk
 ## Roadmap
 
 - [x] Official MCP Registry listing (`io.github.devkindhq/whatweb-mcp`)
-- [ ] Docker MCP Registry and Smithery listings
+- [ ] Docker MCP Registry listing
 - [ ] Batch scanning (multiple targets in one call)
 - [ ] Optional CSV/JSON export tool
 - [ ] Scheduled re-scans with diffing (alert when a target's stack changes)
