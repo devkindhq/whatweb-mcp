@@ -74,7 +74,7 @@ Run:
 claude mcp add whatweb -- docker run -i --rm --memory=512m --cpus=0.5 --pids-limit=100 devkind/whatweb-mcp:latest
 ```
 
-Or add the standard config above to `.mcp.json` in your project root.
+Or add the standard config above to `.mcp.json` in your project root, or install the [Claude Code plugin](#claude-code-plugin).
 
 </details>
 
@@ -158,9 +158,25 @@ Aggression levels map to WhatWeb's `-a` flag: `stealthy`/`passive` (1, one reque
 
 The container installs WhatWeb from the official upstream repository on an Alpine Ruby base, then runs a Python MCP server (`mcp` SDK, stdio transport). Each scan shells out with an argument array (no shell interpolation), writes WhatWeb's JSON log to an ephemeral `/app/output`, and parses it into typed results. Up to 100 scan results are kept in memory for follow-up questions in the same session. Tests cover target validation, JSON parsing, result-store bounds, and a live MCP stdio JSON-RPC handshake. Run them with `pytest`. Also installable from source without Docker: `pip install -r requirements.txt && python3 server.py` (requires WhatWeb on your PATH).
 
-## Claude Code skill
+## Network access and data
 
-This repo ships a ready-made agent skill at [`skills/tech-detector/SKILL.md`](skills/tech-detector/SKILL.md). It teaches Claude Code (or any skill-aware agent) when to scan a site, how to call `whatweb_scan`, and how to turn the raw technology list into a structured stack summary, business interpretation, and analysis angles — useful for lead qualification and competitor research. To install, copy the `skills/tech-detector/` directory into your project's `.claude/skills/` (or `~/.claude/skills/`) directory.
+- The plugin starts the server with `docker run`, so Docker downloads the `devkind/whatweb-mcp:latest` image from Docker Hub on first use. Later runs use the local copy until you run `docker pull devkind/whatweb-mcp:latest`. Docker must be installed and running.
+- Each scan sends HTTP requests from your machine to the target you give, with the user agent `WhatWeb/0.6.4`. WhatWeb follows up to 10 redirects, also to other hosts. The `aggressive` level sends many more requests than `stealthy`.
+- The tool result carries the target's HTTP status, the detected technologies, their versions and the matched strings.
+- The server sends no telemetry and calls no other service. It writes logs to stderr only.
+- The server keeps up to 100 scan results in memory and writes each WhatWeb JSON log inside the container. `--rm` deletes the container and its logs when the session ends.
+
+## Claude Code plugin
+
+The repository root is a Claude Code plugin. It adds the WhatWeb MCP server and the [`tech-detector`](skills/tech-detector/SKILL.md) skill. The skill teaches Claude when to scan a site, how to call `whatweb_scan`, and how to turn the technology list into a stack summary and analysis angles for lead qualification and competitor research.
+
+Install it now (Claude Code 2.1.275 or later):
+
+```
+/plugin install whatweb --marketplace devkindhq/whatweb-mcp
+```
+
+On older Claude Code versions, use the `claude mcp add` command in [Install in your client](#install-in-your-client). To use only the skill in another agent, copy `skills/tech-detector/` into your project's `.claude/skills/` (or `~/.claude/skills/`) directory.
 
 ## Roadmap
 

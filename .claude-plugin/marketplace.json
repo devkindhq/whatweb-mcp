@@ -1,0 +1,12 @@
+{
+  "name": "whatweb-mcp",
+  "description": "Devkind marketplace for the WhatWeb MCP server plugin.",
+  "owner": { "name": "Devkind", "url": "https://devkind.com.au" },
+  "plugins": [
+    {
+      "name": "whatweb",
+      "source": "./",
+      "description": "Web technology fingerprinting MCP server (multi-arch Docker) plus the tech-detector agent skill — CMS, frameworks, servers, analytics and CDN detection for lead qualification."
+    }
+  ]
+}

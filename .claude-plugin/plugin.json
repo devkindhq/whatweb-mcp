@@ -1,10 +1,12 @@
 {
   "name": "whatweb",
-  "version": "1.1.0",
+  "displayName": "WhatWeb MCP",
+  "version": "1.1.1",
   "description": "Web technology fingerprinting MCP server (multi-arch Docker) plus the tech-detector agent skill — CMS, frameworks, servers, analytics and CDN detection for lead qualification.",
   "author": { "name": "Devkind", "url": "https://devkind.com.au" },
   "license": "MIT",
   "homepage": "https://github.com/devkindhq/whatweb-mcp",
   "repository": "https://github.com/devkindhq/whatweb-mcp",
-  "keywords": ["whatweb", "fingerprinting", "mcp", "mcp-server", "tech-detection", "lead-generation", "prospecting", "recon", "claude-skills", "docker"]
+  "keywords": ["whatweb", "fingerprinting", "mcp", "mcp-server", "tech-detection", "lead-generation", "prospecting", "recon", "claude-skills", "docker"],
+  "icon": "./assets/icon.png"
 }
