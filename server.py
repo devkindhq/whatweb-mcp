@@ -107,7 +107,8 @@ def _validate_target(target: str) -> str | None:
 AGGRESSION_LEVELS = {
     "stealthy": 1,
     "passive": 1,
-    "polite": 2,
+    # WhatWeb has no level 2. "polite" stays as a name for level 1.
+    "polite": 1,
     "normal": 3,
     "aggressive": 4,
 }

@@ -152,7 +152,7 @@ Go to `Settings` -> `AI` -> `Manage MCP Servers` -> `+ Add` to [add an MCP Serve
 }
 ```
 
-Aggression levels map to WhatWeb's `-a` flag: `stealthy`/`passive` (1, one request), `polite` (2), `normal` (3), `aggressive` (4, potentially intrusive, so use only on targets you are authorized to test).
+Aggression levels map to WhatWeb's `-a` flag: `stealthy`/`passive`/`polite` (1, one request), `normal` (3), `aggressive` (4, potentially intrusive, so use only on targets you are authorized to test).
 
 ## How it works
 
