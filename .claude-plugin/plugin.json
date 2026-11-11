@@ -9,5 +9,5 @@
   "repository": "https://github.com/devkindhq/whatweb-mcp",
   "keywords": ["whatweb", "fingerprinting", "mcp", "mcp-server", "tech-detection", "lead-generation", "prospecting", "recon", "claude-skills", "docker"],
   "icon": "./assets/icon.png",
-  "privacyPolicyUrl": "https://devkind.com.au/privacy-policy"
+  "privacyPolicyUrl": "https://github.com/devkindhq/whatweb-mcp/blob/main/PRIVACY.md"
 }

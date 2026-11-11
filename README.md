@@ -162,7 +162,7 @@ The container installs WhatWeb from the official upstream repository on an Alpin
 
 - The plugin starts the server with `docker run`, so Docker downloads the `devkind/whatweb-mcp:latest` image from Docker Hub on first use. Later runs use the local copy until you run `docker pull devkind/whatweb-mcp:latest`. Docker must be installed and running.
 - Each scan sends HTTP requests from your machine to the target you give, with the user agent `WhatWeb/0.6.4`. WhatWeb follows up to 10 redirects, also to other hosts. The `aggressive` level sends many more requests than `stealthy`.
-- The tool result carries the target's HTTP status, the detected technologies, their versions and the matched strings.
+- The tool result carries the target's HTTP status, the detected technologies, their versions and the matched strings. Matched strings can include email addresses from `mailto:` links on the page. See [PRIVACY.md](PRIVACY.md).
 - The server sends no telemetry and calls no other service. It writes logs to stderr only.
 - The server keeps up to 100 scan results in memory and writes each WhatWeb JSON log inside the container. `--rm` deletes the container and its logs when the session ends.
 
